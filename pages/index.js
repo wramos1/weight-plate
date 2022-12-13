@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
+import Cart from '../components/Cart';
 import styles from '../styles/Home.module.css'
 
 export async function getStaticProps() {
@@ -97,6 +98,8 @@ export default function Home({ products }) {
           )
           )}
         </div>
+
+        <Cart />
       </main>
     </div>
   )
