@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
+import AddToCart from '../components/Add-To-Cart';
 import Cart from '../components/Cart';
 import styles from '../styles/Home.module.css'
 
@@ -16,16 +17,6 @@ export async function getStaticProps() {
   }
 
   const results = await res.json();
-
-
-  const product = {
-    id: '',
-    title: '',
-    description: '',
-    image: '',
-    price: '',
-    slug: '', //handle
-  }
 
   const products = results.data.products.edges.map(({ node }) => {
     return {
@@ -49,13 +40,12 @@ function Product({ product }) {
     style: 'currency',
     currency: 'USD'
   });
-
   return (
     <div className={styles.product}>
       <Link href={`/product/${product.slug}`}>
         <Image
-          width={200}
-          height={200}
+          width={100}
+          height={100}
           src={product.imgSrc}
           alt={product.imgAlt}
         />

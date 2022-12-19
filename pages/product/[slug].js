@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import AddToCart from '../../components/Add-To-Cart';
 import styles from '../../styles/Home.module.css';
 
 export async function getStaticPaths() {
@@ -44,7 +44,8 @@ export async function getStaticProps({ params }) {
             imgSrc: node.images.edges[0].node.src,
             imgAlt: node.title,
             price: node.variants.edges[0].node.priceV2.amount,
-            slug: node.handle
+            slug: node.handle,
+            variants: node.variants.edges
         }
     }).find(({ slug }) => slug === params.slug);
 
@@ -61,14 +62,12 @@ function Product({ product }) {
 
     return (
         <div className={styles.product}>
-            <Link href={`/product/${product.slug}`}>
-                <Image
-                    width={200}
-                    height={200}
-                    src={product.imgSrc}
-                    alt={product.imgAlt}
-                />
-            </Link>
+            <Image
+                width={100}
+                height={100}
+                src={product.imgSrc}
+                alt={product.imgAlt}
+            />
 
             <h2>
                 {product.title}
@@ -81,6 +80,12 @@ function Product({ product }) {
             <p className={styles.price}>
                 {formattedPrice.format(product.price)}
             </p>
+
+            <AddToCart
+                buttonText={`Purchase for ${formattedPrice.format(product.price)}`}
+                variantId={product.variants[0].node.id}
+                options={product.variants}
+            />
         </div>
     )
 }
