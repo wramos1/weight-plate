@@ -1,10 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.container {
-  margin: 5rem auto;
-  max-width: 600px;
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 250px;
 }
 
 .products {

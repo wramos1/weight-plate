@@ -67,6 +67,11 @@ const Cart = () => {
         window.localStorage.setItem('Weight-Plate:cart:status', 'dirty');
     }
 
+    const formattedPrice = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    });
+
     return (
         <div className="cart">
             <button className="icon" onClick={toggleCart}>
@@ -93,7 +98,7 @@ const Cart = () => {
                                 ))
                             }
                             <li className="total">
-                                <p>Total: {cost === 0 ? 'FREE' : `$${cart.estimatedCost}`}</p>
+                                <p>Total: {cart.estimatedCost === 0 ? 'FREE' : `${formattedPrice.format(cart.estimatedCost)}`}</p>
                             </li>
                         </ul>
                         <a href={`${cart.checkoutUrl}`} className="button">
