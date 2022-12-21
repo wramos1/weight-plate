@@ -30,7 +30,7 @@ const CollectionList = () => {
 
         const results = await res.json();
 
-        const collections = results.collections.map(({ node }) => {
+        const collections = results.collections.splice(1).map(({ node }) => {
             return {
                 title: node.title,
                 description: node.description,
@@ -39,7 +39,6 @@ const CollectionList = () => {
                 id: node.id
             }
         });
-
 
         setCollections(collections);
     }

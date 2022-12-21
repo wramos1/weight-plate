@@ -18,6 +18,15 @@ export default async function handler(req, res) {
                       node {
                         id
                         title
+                        handle
+                        images(first: 1) {
+                          edges {
+                            node {
+                              src
+                              altText
+                            }
+                          }
+                        }
                         variants(first: 3) {
                           edges {
                             node {

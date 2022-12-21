@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export async function getStaticPaths() {
     const url = new URL('http://localhost:3000');
@@ -49,6 +50,25 @@ export async function getStaticProps({ params }) {
 }
 
 const CollectionPage = ({ collection }) => {
+
+    const mapProducts = collection.products.map(({ node }) => {
+        return (
+            <div key={node.id}>
+                <h1>
+                    {node.title}
+                </h1>
+                <Link href={`/product/${node.handle}`}>
+                    <Image
+                        width={100}
+                        height={100}
+                        src={node.images.edges[0].node.src}
+                        alt={node.title}
+                    />
+                </Link>
+            </div>
+        )
+    })
+
     return (
         <div>
             <Image
@@ -57,6 +77,8 @@ const CollectionPage = ({ collection }) => {
                 src={collection.imgSrc}
                 alt={collection.title} />
             {collection.title}
+
+            {mapProducts}
         </div>
     )
 }
