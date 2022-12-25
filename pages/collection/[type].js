@@ -67,10 +67,14 @@ const CollectionPage = ({ collection }) => {
                 </Link>
             </div>
         )
-    })
+    });
 
     return (
         <div>
+            <Link href={'/'}>
+                &larr; Back Home
+            </Link>
+
             <Image
                 width={100}
                 height={100}

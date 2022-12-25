@@ -1,15 +1,33 @@
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 
 const Collection = ({ collection }) => {
-    const { products } = collection;
+    const mapProducts = collection.products.slice(0, 1).map(({ node }) => {
+        return (
+            <div key={node.id}>
+                <h1>
+                    {node.title}
+                </h1>
+                <Link href={`/product/${node.handle}`}>
+                    <Image
+                        width={100}
+                        height={100}
+                        src={node.images.edges[0].node.src}
+                        alt={node.title}
+                    />
+                </Link>
+            </div>
+        )
+    });
 
     return (
         <div>
             <Link href={`/collection/${collection.title}`}>
                 {collection.title}
             </Link>
+            {mapProducts}
         </div>
     )
 };
@@ -51,7 +69,9 @@ const CollectionList = () => {
         <div>
             {collections.map((collection) => {
                 return (
-                    <Collection key={collection.id} collection={collection} />
+                    <Collection
+                        key={collection.id}
+                        collection={collection} />
                 )
             })}
         </div>

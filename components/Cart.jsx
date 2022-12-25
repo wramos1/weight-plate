@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import Image from 'next/image';
 
 const Cart = () => {
-    const [cart, setCart] = useState({ id: null, lines: [], estimatedCost: 0 });
+    const [cart, setCart] = useState({ id: null, lines: [], estimatedCost: 0, items: 0 });
     const [open, setOpen] = useState(false);
 
     const getCart = async () => {
@@ -15,7 +16,8 @@ const Cart = () => {
                 id: localCartData.cartId,
                 checkoutUrl: localCartData.checkoutUrl,
                 estimatedCost: existingCart.cart.estimatedCost.totalAmount.amount,
-                lines: existingCart.cart.lines.edges
+                lines: existingCart.cart.lines.edges,
+                items: existingCart.cart.totalQuantity
             });
 
             return;
@@ -30,7 +32,8 @@ const Cart = () => {
             id: localCartData.cartId,
             checkoutUrl: localCartData.checkoutUrl,
             estimatedCost: null,
-            lines: []
+            lines: [],
+            items: 0
         })
 
         window.localStorage.setItem(
@@ -49,7 +52,7 @@ const Cart = () => {
                 getCart();
                 setOpen(true);
                 window.localStorage.setItem('Weight-Plate:cart:status', 'clean');
-            }
+            };
         }, 500)
 
         return () => {
@@ -75,15 +78,15 @@ const Cart = () => {
     return (
         <div className="cart">
             <button className="icon" onClick={toggleCart}>
-                <img src="https://cdn-icons-png.flaticon.com/512/3081/3081986.png" alt="" />
-                <div className="count">{cart.lines.length}</div>
+                <Image
+                    src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png"
+                    alt=""
+                    width={50}
+                    height={50}
+                />
             </button>
 
-            <div className={`drawer ${open ? 'open' : ''}`}>
-                <button className="close" onClick={toggleCart}>
-                    &times; close
-                </button>
-
+            <div>
                 <h3>Your Cart</h3>
                 {cart.lines.length > 0 ? (
                     <>

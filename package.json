@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-google-maps/api": "^2.17.1",
     "@shopify/shopify-api": "^6.0.1",
     "eslint": "8.29.0",
     "eslint-config-next": "13.0.6",
+    "google-map-react": "^2.2.0",
     "next": "13.0.6",
     "node-fetch": "^3.3.0",
     "react": "18.2.0",

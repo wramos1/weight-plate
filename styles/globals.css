@@ -24,7 +24,22 @@ a {
     color-scheme: dark;
   }
   body {
-    color: white;
     background: black;
+  }
+}
+
+.map-container {
+  width: 50%;
+  height: 50%;
+}
+
+@layer components {
+
+  .text-primary-color {
+    @apply text-slate-800;
+  }
+
+  .bg-primary-color {
+    @apply bg-slate-800;
   }
 }
