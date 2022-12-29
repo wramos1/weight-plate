@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import Logo from '../images/store-logo.png'
+import Cart from '../images/cart.png'
 import { useEffect, useState } from 'react'
 
 const Header = () => {
@@ -30,7 +31,7 @@ const Header = () => {
     }, [])
 
     return (
-        <nav className='bg-slate-800 w-full flex items-center justify-between border-b-2 border-gray-100 py-4 px-6'>
+        <nav className='bg-slate-800 text-white text-xl w-full flex items-center justify-between border-b-2 border-gray-100 py-4 px-6'>
             <div>
                 <Link href={'/'}>
                     <Image
@@ -64,18 +65,20 @@ const Header = () => {
                 </ul>
             </div>
 
-            <div className='flex flex-row gap-x-3'>
+            <div className='flex flex-row gap-x-3 items-center'>
                 <Link href={'/checkout'} className='flex flex-row gap-x-1'>
                     <p className={items !== 0 ? "bg-black rounded-xl w-5 text-center" : ''}>{items !== 0 ? items : ''}</p>
                     <Image
-                        src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png"
-                        alt=""
-                        width={25}
-                        height={25}
+                        src={Cart}
+                        alt="cart"
+                        width={30}
+                        height={30}
                     />
                 </Link>
                 <Link href={'/order'}>
-                    Order Now
+                    <button className="button">
+                        Order Now
+                    </button>
                 </Link>
             </div>
 

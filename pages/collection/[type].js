@@ -15,7 +15,7 @@ export async function getStaticPaths() {
     const results = await res.json();
 
     return {
-        paths: results.collections.map(({ node }) => `/collection/${node.title}`),
+        paths: results.collections.map(({ node }) => `/collection/${node.handle}`),
         fallback: false,
     };
 };
@@ -40,9 +40,10 @@ export async function getStaticProps({ params }) {
             description: node.description,
             products: node.products.edges,
             imgSrc: node.image === null ? '' : node.image.src,
-            id: node.id
+            id: node.id,
+            handle: node.handle
         }
-    }).find(({ title }) => title === params.type)
+    }).find(({ handle }) => handle === params.type)
 
     return {
         props: { collection }

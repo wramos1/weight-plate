@@ -17,20 +17,27 @@ a {
 
 * {
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    background: black;
-  }
+  font-family: 'Permanent Marker', cursive;
 }
 
 .map-container {
   width: 50%;
   height: 50%;
+}
+
+.protein {
+  background-image: url('../images/protein.jpeg'); 
+  position: absolute;
+  background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	height: 100vh;
+  background-position: center;
+  clip-path: polygon(0% 0%, 100% 100%, 60% 100%, 0% 150%);
+}
+
+.diagonal-color-background {
+  background-image: linear-gradient(to top left, rgb(30,41,59) 50%, white 50%);
 }
 
 @layer components {
@@ -41,5 +48,17 @@ a {
 
   .bg-primary-color {
     @apply bg-slate-800;
+  }
+
+  .button {
+    @apply border-2 border-black p-3 bg-slate-800 rounded-2xl hover:bg-black hover:border-slate-800 text-white;  
+  }
+
+  .title {
+    @apply text-5xl md:text-5xl lg:text-7xl xl:text-8xl
+  }
+
+  .subTitle {
+    @apply text-xl lg:text-2xl xl:text-2xl
   }
 }

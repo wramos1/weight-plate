@@ -12,6 +12,7 @@ export default async function handler(req, res) {
                     src
                   }
                   id
+                  handle
                   description
                   products(first: 10) {
                     edges {

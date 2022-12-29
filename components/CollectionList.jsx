@@ -4,30 +4,20 @@ import { useEffect, useState } from "react";
 
 
 const Collection = ({ collection }) => {
-    const mapProducts = collection.products.slice(0, 1).map(({ node }) => {
-        return (
-            <div key={node.id}>
-                <h1>
-                    {node.title}
-                </h1>
-                <Link href={`/product/${node.handle}`}>
-                    <Image
-                        width={100}
-                        height={100}
-                        src={node.images.edges[0].node.src}
-                        alt={node.title}
-                    />
-                </Link>
-            </div>
-        )
-    });
-
     return (
-        <div>
-            <Link href={`/collection/${collection.title}`}>
-                {collection.title}
+        <div className="w-1/4 flex justify-evenly flex-col h-full relative border-2 border-slate-800 hover:bg-slate-800 hover:border-white hover:border-2 hover:z-10 hover:text-white transition-all hover:scale-110">
+            <Link href={`/collection/${collection.handle}`} className="absolute h-full w-full">
+                <div className="h-1/3 w-full flex justify-center items-center">
+                    <h1 className="text-5xl w-screen flex-[4_1_0%] text-center">{collection.title}</h1>
+                </div>
+                <div className="relative h-2/3 w-full p-2">
+                    <Image
+                        fill
+                        src={collection.imgSrc}
+                        alt={collection.title}
+                    />
+                </div>
             </Link>
-            {mapProducts}
         </div>
     )
 };
@@ -54,7 +44,8 @@ const CollectionList = () => {
                 description: node.description,
                 products: node.products.edges,
                 imgSrc: node.image === null ? '' : node.image.src,
-                id: node.id
+                id: node.id,
+                handle: node.handle
             }
         });
 
@@ -66,14 +57,21 @@ const CollectionList = () => {
     }, []);
 
     return (
-        <div>
-            {collections.map((collection) => {
-                return (
-                    <Collection
-                        key={collection.id}
-                        collection={collection} />
-                )
-            })}
+        <div className="flex flex-col w-full h-screen border-t-2 border-white">
+            <div className="flex flex-col justify-center w-full items-center">
+                <h1 className="text-6xl">We Got The Weight For Your Plate</h1>
+                <h1 className="text-4xl">All Day</h1>
+            </div>
+            <div className="h-full w-full flex">
+                {collections.map((collection) => {
+                    return (
+                        <Collection
+                            key={collection.id}
+                            collection={collection} />
+                    )
+                })}
+            </div>
+
         </div>
     )
 };
