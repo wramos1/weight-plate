@@ -58,7 +58,7 @@ const CollectionList = () => {
 
     return (
         <div className="flex flex-col w-full h-screen border-t-2 border-white">
-            <div className="flex flex-col justify-center w-full items-center">
+            <div className="flex flex-col justify-center w-full items-center mt-4">
                 <h1 className="text-6xl">We Got The Weight For Your Plate</h1>
                 <h1 className="text-4xl">All Day</h1>
             </div>

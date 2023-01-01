@@ -9,27 +9,35 @@ function Product({ product }) {
         currency: 'USD'
     });
     return (
-        <div>
-            <Link href={`/product/${product.slug}`}>
-                <Image
-                    width={100}
-                    height={100}
-                    src={product.imgSrc}
-                    alt={product.imgAlt}
-                />
-            </Link>
+        <div className="flex flex-col max-w-[360px] h-[500px] basis-1/4 border-2 rounded-2xl border-black justify-between items-stretch p-2">
 
-            <h2>
-                {product.title}
-            </h2>
+            <div className="h-1/2 relative w-full">
+                <h2 className="subTitle text-2xl text-center">
+                    {product.title}
+                </h2>
 
-            <p>
-                {product.description}
-            </p>
+                <div className='rounded-2xl relative h-full'>
+                    <Link href={`/product/${product.slug}`}>
+                        <Image
+                            className="rounded-2xl"
+                            fill
+                            src={product.imgSrc}
+                            alt={product.imgAlt}
+                        />
+                    </Link>
+                </div>
+            </div>
 
-            <p>
-                {formattedPrice.format(product.price)}
-            </p>
+
+            <div className="w-full flex flex-col justify-evenly">
+                <p className="text-center">
+                    {product.description}
+                </p>
+
+                <Link href={`/product/${product.slug}`} className="button my-0 mx-auto">
+                    Purchase For {formattedPrice.format(product.price)}
+                </Link>
+            </div>
         </div>
     )
 };
@@ -71,7 +79,7 @@ const ProductList = () => {
 
 
     return (
-        <div>
+        <div className="flex flex-wrap flex-row gap-8 justify-evenly items-evenly">
             {products.map((product) => {
                 return (
                     <Product
