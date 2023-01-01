@@ -31,7 +31,7 @@ const Header = () => {
     }, [])
 
     return (
-        <nav className='bg-slate-800 text-white text-xl w-full flex items-center justify-between border-b-2 border-gray-100 py-4 px-6'>
+        <nav className='z-50 fixed bg-slate-800 text-white text-xl w-full flex items-center justify-between py-4 px-6'>
             <div>
                 <Link href={'/'}>
                     <Image
@@ -45,19 +45,19 @@ const Header = () => {
 
             <div className='w-1/2'>
                 <ul className='flex item-center justify-evenly flex-row'>
-                    <li>
+                    <li className='hover:text-slate-400'>
                         <Link href={'/about-us'}>
                             About Us
                         </Link>
                     </li>
 
-                    <li>
+                    <li className='hover:text-slate-400'>
                         <Link href={'/careers'}>
                             Careers
                         </Link>
                     </li>
 
-                    <li>
+                    <li className='hover:text-slate-400'>
                         <Link href={'/menu'}>
                             Menu
                         </Link>

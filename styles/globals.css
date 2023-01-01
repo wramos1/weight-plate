@@ -17,7 +17,6 @@ a {
 
 * {
   box-sizing: border-box;
-  font-family: 'Permanent Marker', cursive;
 }
 
 .map-container {
@@ -25,11 +24,19 @@ a {
   height: 50%;
 }
 
+.careers {
+  background-image: url('../images/team.jpg'); 
+  background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+	background-size: cover;
+	height: 100vh;
+}
+
 .protein {
   background-image: url('../images/protein.jpeg'); 
   position: absolute;
   background-repeat: no-repeat;
-	background-position: center;
 	background-size: cover;
 	height: 100vh;
   background-position: center;
@@ -51,14 +58,19 @@ a {
   }
 
   .button {
-    @apply border-2 border-black p-3 bg-slate-800 rounded-2xl hover:bg-black hover:border-slate-800 text-white;  
+    @apply border-2 border-black p-3 bg-slate-800 rounded-2xl text-white hover:text-slate-400;  
   }
 
   .title {
-    @apply text-5xl md:text-5xl lg:text-7xl xl:text-8xl
+    @apply text-5xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl
   }
 
   .subTitle {
-    @apply text-xl lg:text-2xl xl:text-2xl
+    @apply text-xl lg:text-2xl xl:text-3xl
   }
+
+  .formal-button {
+    @apply bg-slate-500 text-white border border-black p-3 hover:bg-slate-600 hover:underline;
+  }
+
 }
