@@ -12,13 +12,16 @@ export default async function handler(req, res) {
             handle
             description
             title
-            totalInventory
+            tags
             variants(first: 3) {
               edges {
                 node {
                   id
                   title
                   quantityAvailable
+                  image{
+                    url
+                  }
                   priceV2 {
                     amount
                     currencyCode
