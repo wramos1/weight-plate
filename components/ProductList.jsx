@@ -9,9 +9,9 @@ function Product({ product }) {
         currency: 'USD'
     });
     return (
-        <div className="flex flex-col max-w-[360px] h-[500px] basis-1/4 border-2 rounded-2xl border-black justify-between items-stretch p-2">
+        <div className="flex flex-col max-w-[360px] h-[500px] basis-1/4 rounded-2xl justify-between items-stretch p-2">
 
-            <div className="h-1/2 relative w-full">
+            <div className="h-full relative w-full">
                 <h2 className="subTitle text-2xl text-center">
                     {product.title}
                 </h2>
@@ -29,12 +29,12 @@ function Product({ product }) {
             </div>
 
 
-            <div className="w-full flex flex-col justify-evenly">
+            <div className="w-full flex flex-col justify-center items-center h-full relative">
                 <p className="text-center">
                     {product.description}
                 </p>
 
-                <Link href={`/product/${product.slug}`} className="button my-0 mx-auto">
+                <Link href={`/product/${product.slug}`} className="button my-0 mx-auto bottom-0 absolute">
                     Purchase For {formattedPrice.format(product.price)}
                 </Link>
             </div>
