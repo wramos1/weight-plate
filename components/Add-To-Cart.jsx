@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 
-const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
+const AddToCart = ({ variantId, price, options = false, changePhoto }) => {
     const [selectedOption, setSelectedOption] = useState({ id: variantId, imgSrc: '' })
     const [quantity, setQuantity] = useState(1);
+
+    const formattedPrice = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+    });
 
     const handleChange = (e) => {
         let option = JSON.parse(e.target.value)
@@ -28,7 +33,6 @@ const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
         }
 
         window.localStorage.setItem('Weight-Plate:cart:status', 'dirty');
-
     }
 
     return (
@@ -54,7 +58,7 @@ const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
 
 
             <button className="button w-4/5" onClick={addToCart}>
-                {buttonText}
+                {`Purchase for ${formattedPrice.format(price * quantity)}`}
             </button>
         </>
     )

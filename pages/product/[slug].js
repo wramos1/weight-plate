@@ -106,7 +106,7 @@ function Product({ product }) {
                 </p>
 
                 <AddToCart
-                    buttonText={`Purchase for ${formattedPrice.format(product.price)}`}
+                    price={product.price}
                     variantId={product.variants[0].node.id}
                     options={product.variants}
                     changePhoto={swapVariantPhoto}
