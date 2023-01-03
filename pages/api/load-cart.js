@@ -18,6 +18,7 @@ export default async function handler(req, res) {
                     edges {
                         node {
                             quantity
+                            id
                             estimatedCost {
                                 subtotalAmount {
                                     amount
@@ -31,8 +32,10 @@ export default async function handler(req, res) {
                             merchandise {
                                 ... on ProductVariant {
                                     title
+                                    id
                                     product {
                                         title
+                                        id
                                     }
                                     priceV2 {
                                         amount
