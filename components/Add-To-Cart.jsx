@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
     const [selectedOption, setSelectedOption] = useState({ id: variantId, imgSrc: '' })
+    const [quantity, setQuantity] = useState(1);
 
     const handleChange = (e) => {
         let option = JSON.parse(e.target.value)
@@ -19,7 +20,7 @@ const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
 
         const result = await fetch('/api/add-to-cart', {
             method: 'POST',
-            body: JSON.stringify({ cartId: localCartData.cartId, variantId: selectedOption.id })
+            body: JSON.stringify({ cartId: localCartData.cartId, variantId: selectedOption.id, quantity })
         });
 
         if (!result.ok) {
@@ -32,9 +33,10 @@ const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
 
     return (
         <>
-            <div className='flex flex-col gap-2'>
-                <label htmlFor="variant" className='text-black font-extrabold'>Flavors</label>
-                {options.length > 1 && (
+
+            {options.length > 1 && (
+                <div className='flex flex-col gap-2'>
+                    <label htmlFor="variant" className='text-black'>Flavors</label>
                     <select name='variant' className='bg-slate-800/30 w-4/5 p-1' onChange={handleChange}>
                         {options.map((option) => (
                             <option value={JSON.stringify(option.node)} key={option.node.id}>
@@ -42,8 +44,15 @@ const AddToCart = ({ variantId, buttonText, options = false, changePhoto }) => {
                             </option>
                         ))}
                     </select>
-                )}
+                </div>
+            )}
+
+            <div className='flex flex-col gap-2'>
+                <label htmlFor="quantity">Quantity</label>
+                <input type="number" value={quantity} name="quantity" id="quantity" min={1} onChange={(e) => setQuantity(e.target.value)} className="w-16 bg-slate-400/30 text-black border border-black px-1" />
             </div>
+
+
             <button className="button w-4/5" onClick={addToCart}>
                 {buttonText}
             </button>
