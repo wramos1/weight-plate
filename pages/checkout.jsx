@@ -4,7 +4,6 @@ import Cart from '../components/Cart'
 const Checkout = () => {
     return (
         <div>
-            Hello
             <Cart />
         </div>
     )
