@@ -1,7 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-const Item = ({ item, deleteItem }) => {
+const Item = ({ item, deleteItem, checkQuantityChange }) => {
     const [quantity, setQuantity] = useState(item.quantity);
+
+    useEffect(() => {
+        const interval = setTimeout(() => {
+            checkQuantityChange(item, quantity)
+        }, 1000)
+
+        return () => {
+            clearTimeout(interval);
+        }
+    }, [quantity])
+
 
     const formattedPrice = new Intl.NumberFormat('en-US', {
         style: 'currency',

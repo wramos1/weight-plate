@@ -84,10 +84,29 @@ const Cart = () => {
             body: JSON.stringify({ cartId: localCartData.cartId, lineIds: itemId })
         });
 
+
         if (!result.ok) {
             console.error('There was a problem removing the item to the cart');
         };
     };
+
+    const updateCart = async (item, quantity) => {
+        const localCartData = JSON.parse(window.localStorage.getItem('Weight-Plate:cart'));
+
+        if (!localCartData.cartId) {
+            console.error('Error loading your cart');
+            return;
+        }
+
+        const result = await fetch('/api/update-cart', {
+            method: 'POST',
+            body: JSON.stringify({ cartId: localCartData.cartId, lines: [{ id: item.id, quantity }] })
+        });
+
+        if (!result.ok) {
+            console.error('There was a problem adding the item to the cart');
+        }
+    }
 
 
     const confirmDeletion = (item) => {
@@ -159,6 +178,7 @@ const Cart = () => {
                                         key={num}
                                         item={item}
                                         deleteItem={(item) => confirmDeletion(item)}
+                                        checkQuantityChange={(item, quantity) => updateCart(item, quantity)}
                                     />
                                 ))
                             }
