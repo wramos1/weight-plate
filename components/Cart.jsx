@@ -156,7 +156,7 @@ const Cart = () => {
 
 
     return (
-        <div className='h-[75vh] w-full flex justify-evenly items-center'>
+        <div className='h-[75vh] w-full flex justify-evenly items-center pt-[2rem]'>
             {cart.lines.length > 0 ? (
                 <>
                     <div className='w-1/2 border border-green-500 h-full px-10'>
