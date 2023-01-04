@@ -20,6 +20,7 @@ export default async function handler(req, res) {
                         id
                         title
                         handle
+                        description
                         images(first: 1) {
                           edges {
                             node {
