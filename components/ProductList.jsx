@@ -9,7 +9,7 @@ function Product({ product }) {
         currency: 'USD'
     });
     return (
-        <div className="flex flex-col max-w-[360px] h-[500px] basis-1/4 rounded-2xl justify-between items-stretch p-2">
+        <div className="flex flex-col max-w-[360px] h-[500px] basis-1/2 rounded-2xl justify-between items-stretch p-2">
 
             <div className="h-full relative w-full">
                 <h2 className="subTitle text-2xl text-center">
@@ -19,7 +19,7 @@ function Product({ product }) {
                 <div className='rounded-2xl relative h-full'>
                     <Link href={`/product/${product.slug}`}>
                         <Image
-                            className="rounded-2xl"
+                            className="rounded-2xl static"
                             fill
                             src={product.imgSrc}
                             alt={product.imgAlt}

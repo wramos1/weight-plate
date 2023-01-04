@@ -21,9 +21,9 @@ const AboutUs = () => {
                         We Are Passionate About Our Mission
                     </h2>
                     <p className='text-center text-lg'>
-                        In 2021, the dream to make Weight Plate a reality started .
+                        In 2021, the dream to make Weight Plate a reality started.
                         Up to this day, the initial idea was to make the nutrition
-                        side of training quick and easier for all . Weight Plate brings
+                        side of training quick and easier for all. Weight Plate brings
                         all a fast and delicious way to get their protein in that align
                         with their macros and plans.
                     </p>

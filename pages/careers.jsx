@@ -109,7 +109,7 @@ const Careers = () => {
                     </h1>
                     <h1 className="text-xl px-10 text-center">
                         We Make Sure You Are Benefitting In All Ways At Weight Plate
-                        In Appreciation For Your Hard Work .
+                        In Appreciation For Your Hard Work.
                         You'll receive competitive benefits including:
                     </h1>
                     <h1 className="subTitle text-center">
