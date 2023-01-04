@@ -105,6 +105,7 @@ function Product({ product }) {
 
                 <AddToCart
                     price={product.price}
+                    product={product}
                     variantId={product.variants[0].node.id}
                     options={product.variants}
                     changePhoto={swapVariantPhoto}

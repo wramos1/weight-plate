@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 
-const AddToCart = ({ variantId, price, options = false, changePhoto }) => {
+const AddToCart = ({ variantId, product, price, options = false, changePhoto }) => {
     const [selectedOption, setSelectedOption] = useState({ id: variantId, imgSrc: '' })
+    const [variant, setVariant] = useState(product.variants[0].node.title);
     const [quantity, setQuantity] = useState(1);
 
     const formattedPrice = new Intl.NumberFormat('en-US', {
@@ -12,6 +15,7 @@ const AddToCart = ({ variantId, price, options = false, changePhoto }) => {
     const handleChange = (e) => {
         let option = JSON.parse(e.target.value)
         setSelectedOption({ id: option.id, imgSrc: option.image.url })
+        setVariant(option.title);
         changePhoto(option.image.url)
     }
 
@@ -26,11 +30,13 @@ const AddToCart = ({ variantId, price, options = false, changePhoto }) => {
         const result = await fetch('/api/add-to-cart', {
             method: 'POST',
             body: JSON.stringify({ cartId: localCartData.cartId, variantId: selectedOption.id, quantity })
-        });
-
-        if (!result.ok) {
-            console.error('There was a problem adding the item to the cart');
-        }
+        })
+            .then(() => {
+                toast.success(`${quantity} ${product.title} ${variant === 'Default Title' ? '' : `- ${variant}`} added to your cart`);
+            })
+            .catch(() => {
+                toast.error(`Failed to add ${quantity} ${product.title} ${variant === 'Default Title' ? '' : `- ${variant}`} to your cart`)
+            })
 
         window.localStorage.setItem('Weight-Plate:cart:status', 'dirty');
     }
@@ -60,6 +66,7 @@ const AddToCart = ({ variantId, price, options = false, changePhoto }) => {
             <button className="button w-4/5" onClick={addToCart}>
                 {`Purchase for ${formattedPrice.format(price * quantity)}`}
             </button>
+            <ToastContainer />
         </>
     )
 }
