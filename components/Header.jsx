@@ -66,7 +66,7 @@ const Header = () => {
             </div>
 
             <div className='flex flex-row gap-x-3 items-center'>
-                <Link href={'/checkout'} className='flex flex-row gap-x-1'>
+                <Link href={'/my-bag'} className='flex flex-row gap-x-1'>
                     <p className={items !== 0 ? "bg-black rounded-xl w-5 text-center" : ''}>{items !== 0 ? items : ''}</p>
                     <Image
                         src={Cart}
