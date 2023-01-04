@@ -1,9 +1,7 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link';
 import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
-import styles from '../../styles/Home.module.css';
 
 export async function getStaticPaths() {
     const url = new URL('http://localhost:3000');

@@ -52,6 +52,7 @@ const Careers = () => {
                             className='rounded-xl'
                             src={Team2}
                             fill
+                            alt='team'
                         />
                     </div>
                 </div>

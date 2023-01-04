@@ -21,7 +21,6 @@ const Order = () => {
         const index = markers.indexOf(marker);
         markers.unshift(markers.splice(index, 1)[0]);
         setMarkers(markers)
-        console.log(markers)
     }
 
     const listOutMarkers = () => {
