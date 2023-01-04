@@ -79,7 +79,7 @@ function Product({ product }) {
 
             </div>
 
-            <div className='w-1/2 p-10 flex flex-col gap-8 justify-center h-4/5 px-20'>
+            <div className='w-1/2 flex flex-col gap-8 justify-center h-4/5 px-20 pt-16'>
                 <div>
                     <h2 className='title text-5xl'>
                         {product.title}
