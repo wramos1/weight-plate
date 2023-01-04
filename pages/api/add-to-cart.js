@@ -17,8 +17,11 @@ export default async function handler(req, res) {
                                 quantity
                                 merchandise {
                                     ... on ProductVariant {
+                                        title 
+                                        id
                                         product {
                                             title
+                                            id
                                         }
                                     }
                                 }
@@ -30,7 +33,12 @@ export default async function handler(req, res) {
         }
         `,
         variables: { cartId, variantId, quantity }
-    });
-
-    res.status(200).json({ data })
+    })
+        .then(response => {
+            res.status(200).json({ response });
+        })
+        .catch(error => {
+            res.json(error);
+            res.status(405).end();
+        })
 }

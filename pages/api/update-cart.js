@@ -1,14 +1,12 @@
 import { postToShopify } from "../../utils/shopify";
 
 export default async function handler(req, res) {
-    let { cartId, variantId, quantity } = JSON.parse(req.body);
-
-    quantity = parseInt(quantity);
+    let { cartId, lines } = JSON.parse(req.body);
 
     const data = await postToShopify({
         query: `
-        mutation cartLinesUpdate($cartId: ID!, $variantId: ID!, $quantity: Int!) {
-            cartLinesUpdate(cartId: $cartId, lines: [{ quantity: $quantity, merchandiseId: $variantId}]) {
+        mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+            cartLinesUpdate(cartId: $cartId, lines: $lines) {
                 cart {
                     lines(first: 100){
                         edges {
@@ -17,8 +15,10 @@ export default async function handler(req, res) {
                                 quantity
                                 merchandise {
                                     ... on ProductVariant {
+                                        id
                                         product {
                                             title
+                                            id
                                         }
                                     }
                                 }
@@ -29,8 +29,13 @@ export default async function handler(req, res) {
             }
         }
         `,
-        variables: { cartId, variantId, quantity }
-    });
-
-    res.status(200).json({ data })
+        variables: { cartId, lines }
+    })
+        .then(response => {
+            res.status(200).json({ response });
+        })
+        .catch(error => {
+            res.json(error);
+            res.status(405).end();
+        })
 }
