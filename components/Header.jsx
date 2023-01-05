@@ -46,6 +46,12 @@ const Header = () => {
             <div className='w-1/2'>
                 <ul className='flex item-center justify-evenly flex-row'>
                     <li className='hover:text-slate-400'>
+                        <Link href={'/menu'}>
+                            Menu
+                        </Link>
+                    </li>
+
+                    <li className='hover:text-slate-400'>
                         <Link href={'/about-us'}>
                             About Us
                         </Link>
@@ -54,12 +60,6 @@ const Header = () => {
                     <li className='hover:text-slate-400'>
                         <Link href={'/careers'}>
                             Careers
-                        </Link>
-                    </li>
-
-                    <li className='hover:text-slate-400'>
-                        <Link href={'/menu'}>
-                            Menu
                         </Link>
                     </li>
                 </ul>
@@ -76,7 +76,7 @@ const Header = () => {
                     />
                 </Link>
                 <Link href={'/order'}>
-                    <button className="button">
+                    <button className="formal-button rounded-lg">
                         Order Now
                     </button>
                 </Link>

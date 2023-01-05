@@ -48,8 +48,8 @@ const Item = ({ item, deleteItem, checkQuantityChange }) => {
             </div>
 
             <div className='flex gap-5'>
-                <div className='flex bg-slate-800 text-white w-fit rounded-lg items-center text-sm'>
-                    <button onClick={removeFromQuantity} className='px-3 hover:bg-slate-400/50 rounded-l-lg py-1'>
+                <div className='flex bg-slate-800 text-white w-[95px] justify-between rounded-lg items-center text-sm'>
+                    <button disabled={quantity === 1} onClick={removeFromQuantity} className={`px-3 rounded-l-lg py-1 ${quantity !== 1 ? 'hover:bg-slate-400/50' : 'cursor-not-allowed'}`}>
                         -
                     </button>
 
@@ -62,7 +62,7 @@ const Item = ({ item, deleteItem, checkQuantityChange }) => {
                     </button>
                 </div>
 
-                <button className="formal-button p-1 flex self-start rounded-lg text-sm" onClick={() => deleteItem(item)}>
+                <button className="p-1 bg-red-600 hover:bg-red-700 text-white flex self-start rounded-lg text-sm" onClick={() => deleteItem(item)}>
                     Delete
                 </button>
             </div>

@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Footer = () => {
     return (
-        <div className='border-slate-800 border-t-2 px-12 mt-4'>
+        <div className='border-slate-800 border-t-2 px-12 mt-2'>
             <div className='flex flex-row w-full justify-evenly items-center'>
                 <Image
                     height={70}
