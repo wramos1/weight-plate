@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useLoadScript } from '@react-google-maps/api'
 import Map from '../components/Map';
 import { Markers } from '../markersData';
+import Link from 'next/link';
 
 const Order = () => {
     const [selectedMarker, setSelectedMarker] = useState("");
@@ -27,11 +28,15 @@ const Order = () => {
         if (markers)
             return markers.map((marker) => {
                 return (
-                    <div key={marker.id} className={`py-8 border border-slate-800 w-full ${selectedMarker.id === marker.id ? 'shadow-[0_15px_60px_5px_rgba(0,0,0,0.3)] shadow-slate-800' : ''}`}>
-                        <h1 className='text-lg text-primary-color'>Weight Plate #{marker.id}</h1>
+                    <div key={marker.id} className={`flex flex-col gap-1 w-full h-full ${selectedMarker.id === marker.id ? 'border border-white' : ''}`}>
+                        <h1 className='text-2xl'>Weight Plate #{marker.id}</h1>
                         <p className='font-medium'>{marker.location}</p>
                         <h2>9:00am-10:00pm</h2>
-                        <button>Order</button>
+                        <Link href={'/menu'}>
+                            <button className='formal-button w-full p-1'>
+                                Order
+                            </button>
+                        </Link>
                     </div>
                 )
             })
@@ -42,11 +47,15 @@ const Order = () => {
             (
                 <div>Loading...</div>
             ) : (
-                <div className='w-full h-screen flex justify-between'>
-                    <div className='flex flex-col w-1/2'>
-                        <h1 className='text-2xl font-bold'>Find your local Weight-Plate</h1>
-                        {listOutMarkers()}
+                <div className='w-full h-screen flex justify-between pt-[1rem]'>
+
+                    <div className='flex flex-col w-1/3 gap-2 h-full bg-slate-800 text-white'>
+                        <h1 className='subTitle text-2xl font-bold text-center z-20'>Find your local Weight-Plate</h1>
+                        <div className='h-1/2 flex flex-col gap-5'>
+                            {listOutMarkers()}
+                        </div>
                     </div>
+
                     <Map selectMarker={selectMarker} />
                 </div>
             )
