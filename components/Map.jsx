@@ -30,17 +30,17 @@ const Map = ({ selectMarker }) => {
                 <InfoWindowF position={{ lat: selectedMarker.infoWindowPosition.lat, lng: selectedMarker.infoWindowPosition.lng }} onCloseClick={() => setSelectedMarker("")}>
                     <div className='text-black flex flex-col'>
                         <div>
-                            <h1 className='text-lg font-black'>Weight Plate #{selectedMarker.id}</h1>
-                            <p className='text-slate-800 font-medium'>{selectedMarker.location}</p>
+                            <h1 className='text-2xl font-black'>Weight Plate #{selectedMarker.id}</h1>
+                            <p className='text-slate-800 text-xl font-medium'>{selectedMarker.location}</p>
                             <h2>9:00am-10:00pm</h2>
                         </div>
 
                         <hr className='text-black my-2 border-1 border-black' />
 
-                        <div className='flex flex-row gap-5'>
+                        <div className='flex flex-row justify-between items-center'>
                             <p>(570)-904-5026</p>
                             <Link href={'/menu'}>
-                                <button className='border border-1 px-2 bg-primary-color text-white font-bold'>Begin Order</button>
+                                <button className='formal-button border-1 p-2 bg-primary-color text-white font-bold'>Begin Order</button>
                             </Link>
                         </div>
 
