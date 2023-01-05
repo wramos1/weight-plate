@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 import Link from 'next/link';
 import Item from './Item';
+import Image from 'next/image';
+import CartImg from '../images/cart.png'
 
 const Cart = () => {
     const [cart, setCart] = useState({ id: null, lines: [], estimatedCost: 0, items: 0 });
@@ -113,22 +115,23 @@ const Cart = () => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
-                    <div className=''>
-                        <div>
+                    <div className='h-[80vh] w-full flex justify-center items-center top-0 absolute backdrop-blur-sm'>
+                        <div className='bg-slate-800/95 border-black border-2 text-white flex flex-col justify-around items-center gap-4 text-center p-8 rounded-lg'>
                             <div>
                                 <h1 className="title">
                                     Delete Item
                                 </h1>
                                 <p>
-                                    {`Are you sure you want to delete ${item.quantity} ${item.merchandise?.product?.title}`}
+                                    {`Are you sure you want to delete ${item.quantity} ${item.merchandise?.product?.title}?`}
                                 </p>
                             </div>
 
-                            <div>
-                                <button onClick={onClose}>
+                            <div className='flex w-full justify-around'>
+                                <button onClick={onClose} className='formal-button p-1 rounded-lg text-sm'>
                                     Cancel
                                 </button>
                                 <button
+                                    className='p-1 bg-red-600 hover:bg-red-700 rounded-lg text-sm'
                                     onClick={
                                         () => {
                                             deleteItems(item.id)
@@ -156,10 +159,10 @@ const Cart = () => {
 
 
     return (
-        <div className='h-[75vh] w-full flex justify-evenly items-center pt-[2rem]'>
+        <div className='w-full flex justify-evenly items-center py-[2rem]'>
             {cart.lines.length > 0 ? (
                 <>
-                    <div className='w-1/2 border border-green-500 h-full px-10'>
+                    <div className='w-1/2 h-full px-10 flex flex-col gap-2'>
                         <h3 className='title'>
                             My Bag
                         </h3>
@@ -171,7 +174,7 @@ const Cart = () => {
                         </Link>
 
 
-                        <ul className='mt-10 w-full flex flex-col gap-4'>
+                        <ul className='w-full h-full flex flex-col'>
                             {
                                 cart.lines.map(({ node: item }, num) => (
                                     <Item
@@ -185,43 +188,66 @@ const Cart = () => {
                         </ul>
                     </div>
 
-                    <div className='w-1/2 border border-red-500'>
-                        <ul>
-                            {
-                                cart.lines.map(({ node: item }, num) => (
-                                    <li key={num} className='w-full flex flex-col my-3'>
-                                        <div className='w-full flex justify-between'>
-                                            <p>
-                                                {item.merchandise?.product?.title}
-                                            </p>
-                                            <p>
-                                                {formattedPrice.format(item.estimatedCost?.totalAmount?.amount)}
-                                            </p>
-                                        </div>
+                    <div className='w-1/2 h-full px-36'>
+                        <div className="border-2 shadow-[0px_20px_50px_4px_rgba(0,0,0,0.56)] p-2 pt-20 pb-10 rounded-xl">
+                            <h1 className="subTitle font-bold">
+                                Order Details
+                            </h1>
+                            <ul className='text-sm'>
+                                {
+                                    cart.lines.map(({ node: item }, num) => (
+                                        <li key={num} className='w-full flex flex-col my-3'>
+                                            <div className='w-full flex justify-between'>
+                                                <p className='text-md font-bold'>
+                                                    {item.merchandise?.product?.title}
+                                                </p>
+                                                <p>
+                                                    {formattedPrice.format(item.estimatedCost?.totalAmount?.amount)}
+                                                </p>
+                                            </div>
 
-                                        <div className='w-full flex justify-between'>
-                                            <p>{item.merchandise?.title === 'Default Title' ? 'Original' : `${item.merchandise?.title}`}</p>
-                                            <p>Qty: {item.quantity}</p>
-                                        </div>
-                                        <button className="formal-button p-1 mx-auto my-0" onClick={() => confirmDeletion(item)}>
-                                            Delete
-                                        </button>
-                                    </li>
-                                ))
-                            }
-                            <li className="total">
-                                <p>Total: {cart.estimatedCost === 0 ? 'FREE' : `${formattedPrice.format(cart.estimatedCost)}`}</p>
-                            </li>
-                        </ul>
+                                            <div className='w-full flex justify-between'>
+                                                <p>{item.merchandise?.title === 'Default Title' ? 'Original' : `${item.merchandise?.title}`}</p>
+                                                <p>Qty: {item.quantity}</p>
+                                            </div>
+                                        </li>
+                                    ))
+                                }
+                                <li className="total">
+                                    <hr className='h-[10px]' />
 
-                        <div>
-                            <Link href={`${cart.checkoutUrl}`} className="button">
-                                Check Out
-                            </Link>
+                                    <div className='w-full flex justify-between'>
+                                        <p>SubTotal:</p>
+                                        <p>{cart.estimatedCost === 0 ? 'FREE' : `${formattedPrice.format(cart.estimatedCost)}`}</p>
+                                    </div>
 
-                            <button className="button" onClick={emptyCart}>
-                                Empty Cart
-                            </button>
+                                    <div className='w-full flex justify-between'>
+                                        <p>Tax:</p>
+                                        <p>{formattedPrice.format(0)}</p>
+                                    </div>
+
+                                    <hr className='h-[10px]' />
+
+                                    <div className='w-full flex justify-between'>
+                                        <p>Total:</p>
+                                        <p>{cart.estimatedCost === 0 ? 'FREE' : `${formattedPrice.format(cart.estimatedCost)}`}</p>
+                                    </div>
+
+
+                                </li>
+                            </ul>
+
+                            <div className='w-full flex justify-center gap-4 text-white'>
+                                <button className="bg-red-500 hover:bg-red-700 border-black border-2 p-1 rounded-lg text-sm" onClick={emptyCart}>
+                                    Empty Cart
+                                </button>
+
+                                <Link href={`${cart.checkoutUrl}`}>
+                                    <button className="bg-blue-500 hover:bg-blue-700 border-black border-2 p-1 rounded-lg text-sm">
+                                        Check Out
+                                    </button>
+                                </Link>
+                            </div>
                         </div>
                     </div>
 
@@ -229,7 +255,20 @@ const Cart = () => {
                     <ToastContainer />
                 </>
             ) : (
-                <p>Your cart is empty</p>
+                <div className='h-[100vh] flex flex-col justify-center gap-2 items-center'>
+                    <Image
+                        src={CartImg}
+                        width={250}
+                        height={250}
+                        alt='empty cart'
+                    />
+                    <p>Your cart is empty</p>
+                    <Link href={'/menu'}>
+                        <button className='formal-button'>
+                            Find Items
+                        </button>
+                    </Link>
+                </div>
             )}
         </div>
     )
