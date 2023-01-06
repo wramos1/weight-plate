@@ -47,6 +47,11 @@ a {
   background-image: linear-gradient(to top left, rgb(30,41,59) 50%, white 50%);
 }
 
+
+.mobile.appear {
+  left: 0;
+}
+
 @layer components {
 
   .text-primary-color {
