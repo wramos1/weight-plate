@@ -26,7 +26,7 @@ const CollectionList = () => {
     const [collections, setCollections] = useState([]);
 
     const fetchCollections = async () => {
-        const url = new URL('http://localhost:3000');
+        const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
         url.pathname = '/api/collections';
 
         const res = await fetch(url.toString());

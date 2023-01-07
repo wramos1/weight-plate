@@ -4,7 +4,7 @@ import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
 
 export async function getStaticPaths() {
-    const url = new URL('http://localhost:3000');
+    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
     url.pathname = '/api/products';
 
     const res = await fetch(url.toString());
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({ params }) {
-    const url = new URL('http://localhost:3000');
+    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
     url.pathname = '/api/products';
 
     const res = await fetch(url.toString());
