@@ -57,14 +57,14 @@ const Header = () => {
     return (
         <nav className='z-50 fixed bg-slate-800 text-white text-xl w-full flex items-center justify-between py-4 px-6'>
             <div className='w-1/3'>
-                <a href='/'>
+                <Link href='/'>
                     <Image
                         height={95}
                         weight={95}
                         src={Logo}
                         alt='Store Logo'
                     />
-                </a>
+                </Link>
             </div>
 
             <div className="main-nav w-1/3 flex items-center transition-all mobile:h-4/5 mobile:bg-slate-800 mobile:top-[127px] mobile:justify-center mobile:fixed mobile:-left-full mobile:flex mobile:flex-col mobile:w-full mobile:z-20">
