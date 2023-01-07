@@ -45,8 +45,8 @@ function Product({ product }) {
 const ProductList = () => {
     const [products, setProducts] = useState([]);
 
-    const fetchProducts = async ({ params }) => {
-        const url = new URL('http://localhost:3000' || params.slug);
+    const fetchProducts = async () => {
+        const url = new URL('http://localhost:3000');
         url.pathname = '/api/products';
 
         const res = await fetch(url.toString());

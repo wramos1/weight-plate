@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export async function getStaticPaths({ params }) {
-    const url = new URL('http://localhost:3000' || params.slug);
+export async function getStaticPaths() {
+    const url = new URL('http://localhost:3000');
     url.pathname = '/api/collections';
 
     const res = await fetch(url.toString());
@@ -16,13 +16,13 @@ export async function getStaticPaths({ params }) {
 
     return {
         paths: results.collections.map(({ node }) => `/collection/${node.handle}`),
-        fallback: false,
+        fallback: true,
     };
 };
 
 
 export async function getStaticProps({ params }) {
-    const url = new URL('http://localhost:3000' || params.slug);
+    const url = new URL('http://localhost:3000');
     url.pathname = '/api/collections';
 
     const res = await fetch(url.toString());
