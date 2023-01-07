@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function getStaticPaths() {
-    const url = new URL('http://localhost:3000');
+    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
     url.pathname = '/api/collections';
 
     const res = await fetch(url.toString());
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }) {
-    const url = new URL('http://localhost:3000');
+    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
     url.pathname = '/api/collections';
 
     const res = await fetch(url.toString());
