@@ -38,6 +38,7 @@ const Header = () => {
             for (let i = 0; i < tabs.length; i++) {
                 tabs[i].addEventListener('click', () => {
                     document.querySelector('.main-nav').classList.remove('mobile', 'appear');
+                    setHeaderClicked(false)
                 })
             };
         }
@@ -52,14 +53,14 @@ const Header = () => {
     return (
         <nav className='z-50 fixed bg-slate-800 text-white text-xl w-full flex items-center justify-between py-4 px-6'>
             <div className='w-1/3'>
-                <Link href={'/'}>
+                <a href='/'>
                     <Image
                         height={95}
                         weight={95}
                         src={Logo}
                         alt='Store Logo'
                     />
-                </Link>
+                </a>
             </div>
 
             <div className="main-nav w-1/3 flex items-center transition-all mobile:h-4/5 mobile:bg-slate-800 mobile:top-[127px] mobile:justify-center mobile:fixed mobile:-left-full mobile:flex mobile:flex-col mobile:w-full mobile:z-20">
@@ -86,7 +87,7 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className='w-1/3 flex items-center justify-end mobile:justify-between mobile:w-[45%]'>
+            <div className='w-1/3 flex items-center justify-end mobile:justify-between mobile:w-[48%]'>
                 <div className='flex justify-end gap-x-3 items-center'>
                     <Link href={'/my-bag'} className='flex flex-row gap-x-1'>
                         <p className={items !== 0 ? "bg-black rounded-xl w-5 text-center" : ''}>{items !== 0 ? items : ''}</p>

@@ -45,10 +45,10 @@ export default function Home() {
       {/* End of Hero Section */}
 
       {/* Protein Powder Section */}
-      <div className='w-full h-screen bg-white relative flex justify-end flex-row'>
-        <div className='protein w-full'></div>
+      <div className='w-full h-screen bg-white relative flex justify-end flex-row mobile:flex-col mobile:justify-center'>
+        <div className='protein mobile:clip-none mobile:h-1/2 w-full'></div>
 
-        <div className='w-full flex flex-col justify-start items-end gap-10'>
+        <div className='w-full flex flex-col justify-start items-end gap-10 mobile:items-center mobile:z-20'>
           <h1 className='title'>
             Tasty & Optimal Protein
           </h1>
@@ -65,7 +65,7 @@ export default function Home() {
       {/* End of Protein Powder Section */}
 
       {/* Fork Section */}
-      <div className='diagonal-color-background w-full h-screen bg-white relative flex justify-between flex-row'>
+      <div className='diagonal-color-background w-full h-screen bg-white relative flex justify-between flex-row mobile:flex-col'>
         <div className='flex flex-col w-full h-1/2 justify-start gap-10'>
           <h1 className='title text-left'>
             Helping you pick up the fork

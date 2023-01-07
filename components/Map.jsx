@@ -40,7 +40,7 @@ const Map = ({ selectMarker }) => {
                         <div className='flex flex-row justify-between items-center'>
                             <p>(570)-904-5026</p>
                             <Link href={'/menu'}>
-                                <button className='formal-button border-1 p-2 bg-primary-color text-white font-bold'>Begin Order</button>
+                                <button className='formal-button border-1 p-2 bg-slate-800 text-white font-bold'>Begin Order</button>
                             </Link>
                         </div>
 
