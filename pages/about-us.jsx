@@ -17,10 +17,10 @@ const AboutUs = () => {
             <div className="flex my-5 gap-10 w-full h-[65vh] items-center">
 
                 <div className='w-2/3 h-full flex flex-col justify-evenly'>
-                    <h2 className="subTitle text-5xl">
+                    <h2 className="subTitle text-5xl mobile:text-center mobile:text-3xl">
                         We Are Passionate About Our Mission
                     </h2>
-                    <p className='text-center text-lg'>
+                    <p className='text-center text-lg mobile:text-base'>
                         In 2021, the dream to make Weight Plate a reality started.
                         Up to this day, the initial idea was to make the nutrition
                         side of training quick and easier for all. Weight Plate brings

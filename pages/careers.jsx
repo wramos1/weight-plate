@@ -58,9 +58,9 @@ const Careers = () => {
                 </div>
             </section>
 
-            <section className='w-full h-[70vh] flex flex-col gap-15'>
+            <section className='w-full h-[70vh] flex flex-col gap-15 mobile:h-auto'>
                 <div className='w-full'>
-                    <h1 className="title">
+                    <h1 className="title mobile:text-center">
                         One Big Strong Family
                     </h1>
                 </div>
@@ -83,7 +83,7 @@ const Careers = () => {
                             Learn More About Our Culture
                         </button>
                     </div>
-                    <div className='relative w-1/2 h-full'>
+                    <div className='relative w-1/2 h-full mobile:h-3/4'>
                         <Image
                             className='rounded-xl border border-slate-800'
                             src={Staff}
@@ -104,10 +104,10 @@ const Careers = () => {
                 </div>
 
                 <div className="w-full flex flex-col justify-evenly text-white">
-                    <h1 className="title text-center">
+                    <h1 className="title text-center mobile:text-3xl">
                         Perks & Benefits
                     </h1>
-                    <h1 className="text-xl px-10 text-center">
+                    <h1 className="text-xl px-10 text-center mobile:text-base">
                         We Make Sure You Are Benefitting In All Ways At Weight Plate
                         In Appreciation For Your Hard Work.
                         You'll receive competitive benefits including:

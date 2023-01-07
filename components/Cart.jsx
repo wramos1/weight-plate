@@ -159,7 +159,7 @@ const Cart = () => {
 
 
     return (
-        <div className='w-full flex justify-evenly items-center py-[2rem]'>
+        <div className='w-full flex justify-evenly items-center py-[2rem] mobile:flex-col'>
             {cart.lines.length > 0 ? (
                 <>
                     <div className='w-1/2 h-full px-10 flex flex-col gap-2'>
@@ -188,7 +188,7 @@ const Cart = () => {
                         </ul>
                     </div>
 
-                    <div className='w-1/2 h-full px-36'>
+                    <div className='w-1/2 h-full px-36 lg:px-24 md:px-12 mobile:px-2'>
                         <div className="border-2 shadow-[0px_20px_50px_4px_rgba(0,0,0,0.56)] p-2 pt-20 pb-10 rounded-xl">
                             <h1 className="subTitle font-bold">
                                 Order Details

@@ -37,11 +37,15 @@ const Header = () => {
         if (window.innerWidth < 768) {
             for (let i = 0; i < tabs.length; i++) {
                 tabs[i].addEventListener('click', () => {
-                    document.querySelector('.main-nav').classList.remove('mobile', 'appear');
-                    setHeaderClicked(false)
+                    closeSideNav();
                 })
             };
         }
+    }
+
+    const closeSideNav = () => {
+        document.querySelector('.main-nav').classList.remove('mobile', 'appear');
+        setHeaderClicked(false)
     }
 
     const hamburgerClicked = () => {
@@ -89,7 +93,7 @@ const Header = () => {
 
             <div className='w-1/3 flex items-center justify-end mobile:justify-between mobile:w-[48%]'>
                 <div className='flex justify-end gap-x-3 items-center'>
-                    <Link href={'/my-bag'} className='flex flex-row gap-x-1'>
+                    <Link href={'/my-bag'} onClick={closeSideNav} className='flex flex-row gap-x-1'>
                         <p className={items !== 0 ? "bg-black rounded-xl w-5 text-center" : ''}>{items !== 0 ? items : ''}</p>
                         <Image
                             src={Cart}
@@ -99,7 +103,7 @@ const Header = () => {
                         />
                     </Link>
 
-                    <Link href={'/order'}>
+                    <Link href={'/order'} onClick={closeSideNav}>
                         <button className="formal-button rounded-lg">
                             Order Now
                         </button>

@@ -66,8 +66,8 @@ function Product({ product }) {
     };
 
     return (
-        <div className='flex h-[100vh] justify-between w-full'>
-            <div className='w-2/3 bg-slate-800 flex justify-center p-2 transition-all'>
+        <div className='flex h-[100vh] justify-between w-full mobile:flex-col mobile:h-auto'>
+            <div className='w-2/3 bg-slate-800 flex justify-center p-2 transition-all mobile:h-[450px] mobile:w-full mobile:p-5'>
                 <div className="w-full relative transition-all">
                     <Image
                         className='rounded-2xl transition-all'
@@ -79,8 +79,8 @@ function Product({ product }) {
 
             </div>
 
-            <div className='w-1/2 flex flex-col gap-8 justify-center h-4/5 px-20 pt-24'>
-                <div>
+            <div className='w-1/2 flex flex-col gap-8 justify-center h-4/5 px-20 pt-24 mobile:w-full mobile:pt-0 mobile:items-center mobile:px-4'>
+                <div className='mobile:text-center'>
                     <h2 className='title text-5xl'>
                         {product.title}
                     </h2>
@@ -88,7 +88,7 @@ function Product({ product }) {
                     <p className='subTitle'>
                         {formattedPrice.format(product.price)}
                     </p>
-                    <div className='flex gap-5'>
+                    <div className='flex gap-5 mobile:justify-center'>
                         {product.tags.map((tag, i) => {
                             return (
                                 <li key={i} className="p-1 bg-slate-400/30 border text-sm border-black list-none">
