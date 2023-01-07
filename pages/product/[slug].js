@@ -3,8 +3,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
 
-export async function getStaticPaths() {
-    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
+export async function getStaticPaths({ params }) {
+    const url = new URL('http://localhost:3000' || params.slug);
     url.pathname = '/api/products';
 
     const res = await fetch(url.toString());
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({ params }) {
-    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
+    const url = new URL('http://localhost:3000' || params.slug);
     url.pathname = '/api/products';
 
     const res = await fetch(url.toString());
