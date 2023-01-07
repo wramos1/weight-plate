@@ -75,7 +75,7 @@ const Careers = () => {
                                 WORKING HARD and PLAYING HARD!
                             </h2>
                             <h2 className="subTitle">
-                                You'll feel right at home
+                                You will feel right at home
                             </h2>
                         </div>
 
@@ -110,7 +110,7 @@ const Careers = () => {
                     <h1 className="text-xl px-10 text-center mobile:text-base">
                         We Make Sure You Are Benefitting In All Ways At Weight Plate
                         In Appreciation For Your Hard Work.
-                        You'll receive competitive benefits including:
+                        You will receive competitive benefits including:
                     </h1>
                     <h1 className="subTitle text-center">
                         A FREE GYM MEMBERSHIP

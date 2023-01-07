@@ -43,7 +43,7 @@ const Footer = () => {
                 />
             </div>
             <p className='text-center mobile:text-sm'>
-                @2022 Weight Plate's Restaurants, LLC. All trademarks are owned by Weight Plate's USA, LLC.
+                @2022 Weight Plates Restaurants, LLC. All trademarks are owned by Weight Plates USA, LLC.
             </p>
         </div>
     )

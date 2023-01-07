@@ -24,7 +24,7 @@ export default function Home() {
 
           <h2 className='subTitle'>
             Weight Plate has got you covered! Visit us for an ideal post-workout meal.
-            Or if you haven't worked out today, come get your pre-workout meal.
+            Or if you have not worked out today, come get your pre-workout meal.
           </h2>
 
           <Link href={'/order'}>
