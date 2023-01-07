@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 
 const Header = () => {
     const [items, setItems] = useState(0)
+    const [headerClicked, setHeaderClicked] = useState(false);
 
     const getNumberOfItems = async () => {
         let localCartData = JSON.parse(window.localStorage.getItem('Weight-Plate:cart'));
@@ -42,14 +43,15 @@ const Header = () => {
         }
     }
 
-    const showSideNav = () => {
+    const hamburgerClicked = () => {
+        setHeaderClicked(!headerClicked)
         document.querySelector('.main-nav').classList.toggle('appear');
         document.querySelector('.main-nav').classList.toggle('mobile');
     }
 
     return (
         <nav className='z-50 fixed bg-slate-800 text-white text-xl w-full flex items-center justify-between py-4 px-6'>
-            <div className='w-1/2'>
+            <div className='w-1/3'>
                 <Link href={'/'}>
                     <Image
                         height={95}
@@ -60,9 +62,9 @@ const Header = () => {
                 </Link>
             </div>
 
-            <div className="main-nav w-full flex justify-between items-center mobile:h-3/4 mobile:bg-slate-800 mobile:top-[127px] mobile:justify-center mobile:fixed mobile:-left-full mobile:flex mobile:flex-col mobile:w-full mobile: z-20">
-                <div className='w-1/2 mobile:flex mobile:justify-center mobile:h-full mobile:text-center'>
-                    <ul className='flex item-center justify-evenly flex-row mobile:flex-col'>
+            <div className="main-nav w-1/3 flex items-center transition-all mobile:h-4/5 mobile:bg-slate-800 mobile:top-[127px] mobile:justify-center mobile:fixed mobile:-left-full mobile:flex mobile:flex-col mobile:w-full mobile:z-20">
+                <div className='w-full mobile:flex mobile:justify-center mobile:h-full mobile:text-center'>
+                    <ul className='flex item-center justify-between flex-row mobile:flex-col mobile:justify-start mobile:gap-[20%]'>
                         <li className='hover:text-slate-400 nav-link'>
                             <Link href={'/menu'}>
                                 Menu
@@ -83,35 +85,38 @@ const Header = () => {
                     </ul>
                 </div>
             </div>
-            <div className='flex flex-row gap-x-3 items-center'>
-                <Link href={'/my-bag'} className='flex flex-row gap-x-1'>
-                    <p className={items !== 0 ? "bg-black rounded-xl w-5 text-center" : ''}>{items !== 0 ? items : ''}</p>
-                    <Image
-                        src={Cart}
-                        alt="cart"
-                        width={30}
-                        height={30}
-                    />
-                </Link>
 
-                <Link href={'/order'}>
-                    <button className="formal-button rounded-lg">
-                        Order Now
-                    </button>
-                </Link>
-            </div>
+            <div className='w-1/3 flex items-center justify-end mobile:justify-between mobile:w-[45%]'>
+                <div className='flex justify-end gap-x-3 items-center'>
+                    <Link href={'/my-bag'} className='flex flex-row gap-x-1'>
+                        <p className={items !== 0 ? "bg-black rounded-xl w-5 text-center" : ''}>{items !== 0 ? items : ''}</p>
+                        <Image
+                            src={Cart}
+                            alt="cart"
+                            width={30}
+                            height={30}
+                        />
+                    </Link>
+
+                    <Link href={'/order'}>
+                        <button className="formal-button rounded-lg">
+                            Order Now
+                        </button>
+                    </Link>
+                </div>
 
 
-            <div className='hamburger hidden mobile:block' onClick={showSideNav}>
-                <button class="relative group">
-                    <div class="relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 ring-opacity-30 duration-200 shadow-md group-focus:ring-4">
-                        <div class="flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-500 origin-center overflow-hidden group-focus:rotate-180">
-                            <div class="bg-white h-[2px] w-7 transform transition-all duration-500 -translate-x-1 group-focus:-rotate-45"></div>
-                            <div class="bg-white h-[2px] w-7 rounded transform transition-all duration-500 "></div>
-                            <div class="bg-white h-[2px] w-7 transform transition-all duration-500 -translate-x-1 group-focus:rotate-45"></div>
+                <div className='hamburger hidden mobile:block' onClick={hamburgerClicked}>
+                    <button className="relative group">
+                        <div className={`relative flex overflow-hidden items-center justify-center rounded-full w-[50px] h-[50px] transform transition-all bg-slate-700 ring-0 ring-gray-300 hover:ring-8 ring-opacity-30 duration-200 shadow-md ${headerClicked ? 'ring-4' : ''}`}>
+                            <div className={`flex flex-col justify-between w-[20px] h-[20px] transform transition-all duration-500 origin-center overflow-hidden ${headerClicked ? 'rotate-180' : ''}`}>
+                                <div className={`bg-white h-[2px] w-7 transform transition-all duration-500 -translate-x-1 ${headerClicked ? '-rotate-45' : ''}`}></div>
+                                <div className="bg-white h-[2px] w-7 rounded transform transition-all duration-500 "></div>
+                                <div className={`bg-white h-[2px] w-7 transform transition-all duration-500 -translate-x-1 ${headerClicked ? 'rotate-45' : ''}`}></div>
+                            </div>
                         </div>
-                    </div>
-                </button>
+                    </button>
+                </div>
             </div>
 
         </nav>
