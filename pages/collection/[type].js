@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function getStaticPaths() {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${'weight-plate-2xgpl8b0x-wramos1.vercel.app'}`;
+    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_VERCEL_URL;
 
     const res = await fetch(`${previewEnvBaseUrl}/api/collections`);
     if (!res.ok) {
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }) {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${'weight-plate-2xgpl8b0x-wramos1.vercel.app'}`;
+    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_VERCEL_URL;
     const res = await fetch(`${previewEnvBaseUrl}/api/collections`);
 
     if (!res.ok) {
