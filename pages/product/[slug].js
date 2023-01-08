@@ -4,7 +4,7 @@ import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
 
 export async function getStaticPaths() {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${process.env.VERCEL_URL}`;
+    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${'weight-plate-2xgpl8b0x-wramos1.vercel.app'}`;
 
     const res = await fetch(`${previewEnvBaseUrl}/api/products`);
 
@@ -22,7 +22,7 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({ params }) {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${process.env.VERCEL_URL}`;
+    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${'weight-plate-2xgpl8b0x-wramos1.vercel.app'}`;
 
     const res = await fetch(`${previewEnvBaseUrl}/api/products`);
 
