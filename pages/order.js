@@ -14,7 +14,7 @@ const Order = () => {
 
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+        googleMapsApiKey: process.env.NEXT_PUBLIC_MAPS_API_KEY,
     });
 
     const selectMarker = (marker) => {
