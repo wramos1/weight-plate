@@ -4,10 +4,9 @@ import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
 
 export async function getStaticPaths() {
-    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
-    url.pathname = '/api/products';
+    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${process.env.VERCEL_URL}`;
 
-    const res = await fetch(url.toString());
+    const res = await fetch(`${previewEnvBaseUrl}/api/products`);
 
     if (!res.ok) {
         console.error(res);
@@ -23,10 +22,9 @@ export async function getStaticPaths() {
 };
 
 export async function getStaticProps({ params }) {
-    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
-    url.pathname = '/api/products';
+    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${process.env.VERCEL_URL}`;
 
-    const res = await fetch(url.toString());
+    const res = await fetch(`${previewEnvBaseUrl}/api/products`);
 
     if (!res.ok) {
         console.error(res);

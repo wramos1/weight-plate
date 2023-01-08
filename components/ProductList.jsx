@@ -46,10 +46,7 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     const fetchProducts = async () => {
-        const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
-        url.pathname = '/api/products';
-
-        const res = await fetch(url.toString());
+        const res = await fetch('api/products');
 
         if (!res.ok) {
             console.error(res);
