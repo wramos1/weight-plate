@@ -21,7 +21,6 @@ export const postToShopify = async ({
             console.log({ result });
             return 'No results found.';
         }
-
         return result.data;
     } catch (error) {
         console.log(error);

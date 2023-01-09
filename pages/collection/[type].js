@@ -2,9 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function getStaticPaths() {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_VERCEL_URL;
+    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
+    url.pathname = '/api/collections';
 
-    const res = await fetch(`${previewEnvBaseUrl}/api/collections`);
+    const res = await fetch(url.toString());
+
     if (!res.ok) {
         console.error(res);
         return { props: {} };
@@ -20,8 +22,10 @@ export async function getStaticPaths() {
 
 
 export async function getStaticProps({ params }) {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : process.env.NEXT_PUBLIC_VERCEL_URL;
-    const res = await fetch(`${previewEnvBaseUrl}/api/collections`);
+    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
+    url.pathname = '/api/collections';
+
+    const res = await fetch(url.toString());
 
     if (!res.ok) {
         console.error(res);

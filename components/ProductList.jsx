@@ -45,33 +45,40 @@ function Product({ product }) {
 const ProductList = () => {
     const [products, setProducts] = useState([]);
 
-    const fetchProducts = async () => {
-        const res = await fetch('api/products');
+    const fetchProductList = async () => {
+        try {
+            const res = await fetch('/api/products');
 
-        if (!res.ok) {
-            console.error(res);
-            return { props: {} };
+            if (!res.ok) {
+                console.error(res);
+                return { props: {} };
+            }
+
+            const results = await res.json();
+            results.data.products.edges.map(({ node }) => console.log(node))
+
+
+            const products = results.data.products.edges.map(({ node }) => {
+                return {
+                    id: node.id,
+                    title: node.title,
+                    description: node.description,
+                    imgSrc: node.images.edges[0].node.src,
+                    imgAlt: node.title,
+                    price: node.variants.edges[0].node.priceV2.amount,
+                    slug: node.handle
+                }
+            });
+
+            setProducts(products)
+        } catch (error) {
+            console.error(error)
         }
 
-        const results = await res.json();
-
-        const products = results.data.products.edges.map(({ node }) => {
-            return {
-                id: node.id,
-                title: node.title,
-                description: node.description,
-                imgSrc: node.images.edges[0].node.src,
-                imgAlt: node.title,
-                price: node.variants.edges[0].node.priceV2.amount,
-                slug: node.handle
-            }
-        });
-
-        setProducts(products)
     };
 
     useEffect(() => {
-        fetchProducts();
+        fetchProductList();
     }, [])
 
 

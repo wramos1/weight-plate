@@ -2,38 +2,34 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
+import { fetchProducts } from '../../utils/fetchProducts';
 
 export async function getStaticPaths() {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${'weight-plate-2xgpl8b0x-wramos1.vercel.app'}`;
+    const data = await fetchProducts();
 
-    const res = await fetch(`${previewEnvBaseUrl}/api/products`);
-
-    if (!res.ok) {
-        console.error(res);
+    if (!data.ok) {
+        console.error(data);
         return { props: {} };
     }
 
-    const results = await res.json();
+    const results = await data.json();
 
     return {
-        paths: results.data.products.edges.map(({ node }) => `/product/${node.handle}`),
+        paths: results.products.edges.map(({ node }) => `/product/${node.handle}`),
         fallback: true,
     };
 };
 
 export async function getStaticProps({ params }) {
-    const previewEnvBaseUrl = process.env.NODE_ENV !== 'production' ? 'http://localhost:3000' : `${'weight-plate-2xgpl8b0x-wramos1.vercel.app'}`;
-
-    const res = await fetch(`${previewEnvBaseUrl}/api/products`);
-
-    if (!res.ok) {
-        console.error(res);
+    const data = await fetchProducts()
+    if (!data.ok) {
+        console.error(data);
         return { props: {} };
     }
 
-    const results = await res.json();
+    const results = await data.json();
 
-    const product = results.data.products.edges.map(({ node }) => {
+    const product = results.products.edges.map(({ node }) => {
         return {
             id: node.id,
             title: node.title,
