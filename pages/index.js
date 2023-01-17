@@ -4,8 +4,27 @@ import Image from 'next/image';
 import ChickenWrap from '../images/chick-wrap.png';
 import Fork from '../images/fork.png';
 import Link from 'next/link';
+import { useEffect } from 'react';
 
 export default function Home() {
+  const createCart = async () => {
+    let localCartData = JSON.parse(window.localStorage.getItem('Weight-Plate:cart'));
+    if (localCartData) {
+      return;
+    }
+
+    localCartData = await fetch('/api/create-cart')
+      .then((res) => res.json())
+      .catch((err) => console.error(err));
+    window.localStorage.setItem(
+      'Weight-Plate:cart',
+      JSON.stringify(localCartData)
+    )
+  }
+  useEffect(() => {
+    createCart();
+
+  }, [])
 
   return (
     <>
