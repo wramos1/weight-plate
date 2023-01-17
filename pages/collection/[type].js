@@ -72,7 +72,7 @@ export async function getStaticPaths() {
 
     return {
         paths: results.data.collections.edges.map(({ node }) => `/collection/${node.handle}`),
-        fallback: true,
+        fallback: false,
     };
 };
 
