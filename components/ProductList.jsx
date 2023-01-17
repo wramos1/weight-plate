@@ -55,8 +55,6 @@ const ProductList = () => {
             }
 
             const results = await res.json();
-            results.data.products.edges.map(({ node }) => console.log(node))
-
 
             const products = results.data.products.edges.map(({ node }) => {
                 return {

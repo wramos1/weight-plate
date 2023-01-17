@@ -2,30 +2,142 @@ import Image from "next/image";
 import Link from "next/link";
 
 export async function getStaticPaths() {
-    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
-    url.pathname = '/api/collections';
-
-    const res = await fetch(url.toString());
+    const res = await fetch(process.env.SHOPIFY_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token':
+                process.env.SHOPIFY_STOREFRONT_API_TOKEN,
+        },
+        body: JSON.stringify({
+            query: `
+            query GetCollections {
+                collections(first: 5) {
+                  edges {
+                    node {
+                      title
+                      image {
+                        src
+                      }
+                      id
+                      handle
+                      description
+                      products(first: 10) {
+                        edges {
+                          node {
+                            id
+                            title
+                            handle
+                            description
+                            images(first: 1) {
+                              edges {
+                                node {
+                                  src
+                                  altText
+                                }
+                              }
+                            }
+                            variants(first: 3) {
+                              edges {
+                                node {
+                                  id
+                                  title
+                                  priceV2 {
+                                    amount
+                                    currencyCode
+                                  }
+                                  image {
+                                    url
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }`,
+            variables: {}
+        }),
+    });
 
     if (!res.ok) {
-        console.error(res);
+        console.error(res.data);
         return { props: {} };
     }
 
     const results = await res.json();
 
     return {
-        paths: results.collections.map(({ node }) => `/collection/${node.handle}`),
+        paths: results.data.collections.edges.map(({ node }) => `/collection/${node.handle}`),
         fallback: true,
     };
 };
 
 
 export async function getStaticProps({ params }) {
-    const url = new URL('http://localhost:3000' || process.env.PUBLIC_URL);
-    url.pathname = '/api/collections';
-
-    const res = await fetch(url.toString());
+    const res = await fetch(process.env.SHOPIFY_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token':
+                process.env.SHOPIFY_STOREFRONT_API_TOKEN,
+        },
+        body: JSON.stringify({
+            query: `
+            query GetCollections {
+                collections(first: 5) {
+                  edges {
+                    node {
+                      title
+                      image {
+                        src
+                      }
+                      id
+                      handle
+                      description
+                      products(first: 10) {
+                        edges {
+                          node {
+                            id
+                            title
+                            handle
+                            description
+                            images(first: 1) {
+                              edges {
+                                node {
+                                  src
+                                  altText
+                                }
+                              }
+                            }
+                            variants(first: 3) {
+                              edges {
+                                node {
+                                  id
+                                  title
+                                  priceV2 {
+                                    amount
+                                    currencyCode
+                                  }
+                                  image {
+                                    url
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }`,
+            variables: {}
+        }),
+    });
 
     if (!res.ok) {
         console.error(res);
@@ -34,7 +146,7 @@ export async function getStaticProps({ params }) {
 
     const results = await res.json();
 
-    const collection = results.collections.map(({ node }) => {
+    const collection = results.data.collections.edges.map(({ node }) => {
         return {
             title: node.title,
             description: node.description,

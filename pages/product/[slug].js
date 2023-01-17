@@ -2,10 +2,67 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { useState } from 'react';
 import AddToCart from '../../components/Add-To-Cart';
-import { fetchProducts } from '../../utils/fetchProducts';
 
 export async function getStaticPaths() {
-    const data = await fetchProducts();
+    const data = await fetch(process.env.SHOPIFY_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token':
+                process.env.SHOPIFY_STOREFRONT_API_TOKEN,
+        },
+        body: JSON.stringify({
+            query: `
+        query getProductList {
+          products(sortKey: PRICE, first: 100, reverse: true) {
+            edges {
+              node {
+                id
+                handle
+                description
+                title
+                tags
+                variants(first: 3) {
+                  edges {
+                    node {
+                      id
+                      title
+                      quantityAvailable
+                      image{
+                        url
+                      }
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
+                priceRange {
+                  maxVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                  minVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      src
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }`,
+            variables: {}
+        }),
+    });
 
     if (!data.ok) {
         console.error(data);
@@ -15,13 +72,73 @@ export async function getStaticPaths() {
     const results = await data.json();
 
     return {
-        paths: results.products.edges.map(({ node }) => `/product/${node.handle}`),
+        paths: results.data.products.edges.map(({ node }) => `/product/${node.handle}`),
         fallback: true,
     };
 };
 
 export async function getStaticProps({ params }) {
-    const data = await fetchProducts()
+
+    const data = await fetch(process.env.SHOPIFY_API_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token':
+                process.env.SHOPIFY_STOREFRONT_API_TOKEN,
+        },
+        body: JSON.stringify({
+            query: `
+        query getProductList {
+          products(sortKey: PRICE, first: 100, reverse: true) {
+            edges {
+              node {
+                id
+                handle
+                description
+                title
+                tags
+                variants(first: 3) {
+                  edges {
+                    node {
+                      id
+                      title
+                      quantityAvailable
+                      image{
+                        url
+                      }
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
+                priceRange {
+                  maxVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                  minVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      src
+                      altText
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }`,
+            variables: {}
+        }),
+    });
+
     if (!data.ok) {
         console.error(data);
         return { props: {} };
@@ -29,7 +146,7 @@ export async function getStaticProps({ params }) {
 
     const results = await data.json();
 
-    const product = results.products.edges.map(({ node }) => {
+    const product = results.data.products.edges.map(({ node }) => {
         return {
             id: node.id,
             title: node.title,
