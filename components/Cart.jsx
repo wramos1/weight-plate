@@ -17,6 +17,9 @@ const Cart = () => {
             const existingCart = await fetch(`/api/load-cart?cartId=${localCartData.cartId}`)
                 .then((res) => res.json());
 
+            console.log(existingCart)
+
+
             setCart({
                 id: localCartData.cartId,
                 checkoutUrl: localCartData.checkoutUrl,

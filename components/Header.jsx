@@ -15,6 +15,9 @@ const Header = () => {
         if (localCartData) {
             const existingCart = await fetch(`/api/load-cart?cartId=${localCartData.cartId}`)
                 .then((res) => res.json());
+            if (existingCart.cart === null) {
+                window.localStorage.clear();
+            }
             setItems(existingCart.cart.totalQuantity);
         }
         return;
