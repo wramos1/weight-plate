@@ -11,9 +11,7 @@ _**Technologies Used:** Shopify, GraphQL, React, Tailwind, NextJS_
 This project utilizes the tools required to develop an E-Commerce Website, and brings a much needed restaurant into life;
 a restaurant geared towards those on a fitness journey. 
 
-### "Weight Plate has the weight for your plate".
-
-I utilized these E-Commerce essentials in order to simulate a real restaurant chain's website from using the Google Maps' API to display the locations to a cart that can be easily updated to the user's desires. 
+I utilized these E-Commerce essentials in order to simulate a real restaurant chain's website from using the Google Maps' API to display the restaurant's locations to a cart that can easily be updated as the user desires. 
 
 > All pages excluding the Order, Menu, and Cart pages are mock pages to align with a business oriented application.
 
